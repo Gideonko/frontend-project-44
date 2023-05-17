@@ -6,8 +6,8 @@ import gameLoop from './index.js';
 
 const getProgression = () => {
   const d = getRandomInt(1, 10);
-  const progressionLength = getRandomInt(5, 10);
-  const progression = [getRandomInt(10)];
+  const progressionLength = getRandomInt(5, 9);
+  const progression = [getRandomInt(1, 10)];
   const swapNumber = getRandomInt(0, progressionLength);
 
   for (let i = 0; i < progressionLength; i += 1) {

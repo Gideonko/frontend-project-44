@@ -1,6 +1,6 @@
 import readLineSync from 'readline-sync';
-import { getUserName, getRandomInt } from './support-functions.js';
-import gameLoop from './gameloop.js';
+import { getRandomInt, checkAnswer } from './support-functions.js';
+import gameLoop from './index.js';
 
 const gcd = ([firstNumber, secondNumber]) => {
   if (!secondNumber) {
@@ -9,24 +9,14 @@ const gcd = ([firstNumber, secondNumber]) => {
 
   return gcd([secondNumber, firstNumber % secondNumber]);
 };
-const checkAnswer = (userAnswer, pairs, userName) => {
-  const expressionResult = gcd(pairs);
-
-  if (parseInt(userAnswer, 10) !== parseInt(expressionResult, 10)) {
-    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${expressionResult}'.`);
-    console.log(`Let's try again, ${userName}!`);
-    return false;
-  }
-
-  return true;
-};
 const askQuestion = (name) => {
-  const numberPairs = [getRandomInt(99), getRandomInt(99)];
+  const numberPairs = [getRandomInt(1, 100), getRandomInt(1, 100)];
   console.log(`Question: ${numberPairs[0]} ${numberPairs[1]}`);
 
   const answer = readLineSync.question('Your answer: ');
+  const expressionResult = gcd(numberPairs);
 
-  if (checkAnswer(answer, numberPairs, name) === false) {
+  if (checkAnswer(parseInt(answer, 10), parseInt(expressionResult, 10), name) === false) {
     return false;
   }
 
@@ -34,7 +24,6 @@ const askQuestion = (name) => {
   return true;
 };
 export default () => {
-  const name = getUserName();
   const question = 'Find the greatest common divisor of given numbers.';
-  gameLoop(name, question, askQuestion);
+  gameLoop(question, askQuestion);
 };

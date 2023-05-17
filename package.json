@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/Gideonko/frontend-project-44/workflows/hexlet-check/badge.svg)](https://github.com/Gideonko/frontend-project-44/actions)",
+  "description": "Консольные игры на проверку математических способностей и логики",
   "main": "index.js",
   "type": "module",
   "scripts": {

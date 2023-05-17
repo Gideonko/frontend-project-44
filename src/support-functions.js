@@ -1,7 +1,20 @@
-import readLineSync from 'readline-sync';
+const getRandomInt = (min, max) => {
+  const minPrep = Math.ceil(min);
+  const maxPrep = Math.floor(max);
+  return Math.floor(Math.random() * (maxPrep - minPrep + 1) + minPrep);
+};
+// eslint-disable-next-line no-eval
+const getExpressionResult = (expressionForEval) => eval(`(${expressionForEval})`);
+const checkAnswer = (userAnswer, correctAnswer, userName) => {
+  if (userAnswer !== correctAnswer) {
+    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+    console.log(`Let's try again, ${userName}!`);
+    return false;
+  }
 
-const getRandomInt = (max) => Math.floor(Math.random() * max);
-const getRandomArbitrary = (min, max) => Math.floor(Math.random() * (max - min) + min);
-const getUserName = () => readLineSync.question('May I have your name? ');
+  return true;
+};
 
-export { getRandomInt, getRandomArbitrary, getUserName };
+export {
+  getRandomInt, getExpressionResult, checkAnswer,
+};

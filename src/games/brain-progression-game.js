@@ -19,7 +19,7 @@ const gameLogic = () => {
 const askQuestion = () => {
   const [question, correctAnswer] = gameLogic();
 
-  return [`${question}`, correctAnswer.toString()];
+  return [`${question.join(' ')}`, correctAnswer.toString()];
 };
 export default () => {
   const question = 'What number is missing in the progression?';

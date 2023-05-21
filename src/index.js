@@ -1,14 +1,15 @@
 import readLineSync from 'readline-sync';
 
-export default (question, askQuestion) => {
+export default (question, roundProcessing) => {
+  const roundsCount = 3;
   let isCorrect = false;
   console.log('Welcome to the Brain Games! ');
   const name = readLineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   console.log(question);
 
-  for (let i = 0; i < 3; i += 1) {
-    const [roundQuestion, correctAnswer] = askQuestion();
+  for (let i = 0; i < roundsCount; i += 1) {
+    const [roundQuestion, correctAnswer] = roundProcessing();
 
     console.log(`Question: ${roundQuestion}`);
     const answer = readLineSync.question('Your answer: ');

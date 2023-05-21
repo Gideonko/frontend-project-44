@@ -1,7 +1,7 @@
 import gameLoop from '../index.js';
 import getRandomInt from '../utils.js';
 
-const gameLogic = (number) => {
+const isPrime = (number) => {
   if (number === 1) {
     return true;
   }
@@ -14,13 +14,13 @@ const gameLogic = (number) => {
 
   return true;
 };
-const askQuestion = () => {
+const roundProcessing = () => {
   const question = getRandomInt(1, 100);
-  const correctAnswer = gameLogic(question) ? 'yes' : 'no';
+  const correctAnswer = isPrime(question) ? 'yes' : 'no';
 
-  return [`${question}`, correctAnswer];
+  return [question, correctAnswer];
 };
 export default () => {
   const question = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-  gameLoop(question, askQuestion);
+  gameLoop(question, roundProcessing);
 };

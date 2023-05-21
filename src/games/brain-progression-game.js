@@ -1,10 +1,7 @@
-import readLineSync from 'readline-sync';
-import {
-  getRandomInt, checkAnswer,
-} from './support-functions.js';
-import gameLoop from './index.js';
+import getRandomInt from '../utils.js';
+import gameLoop from '../index.js';
 
-const getProgression = () => {
+const gameLogic = () => {
   const d = getRandomInt(1, 10);
   const progressionLength = getRandomInt(5, 9);
   const progression = [getRandomInt(1, 10)];
@@ -19,18 +16,10 @@ const getProgression = () => {
 
   return [progression, swappedNumber];
 };
-const askQuestion = (name) => {
-  const [question, correctAnswer] = getProgression();
-  console.log(`Question: ${question.join(' ')}`);
+const askQuestion = () => {
+  const [question, correctAnswer] = gameLogic();
 
-  const answer = readLineSync.question('Your answer: ');
-
-  if (checkAnswer(parseInt(answer, 10), parseInt(correctAnswer, 10), name) === false) {
-    return false;
-  }
-
-  console.log('Correct!');
-  return true;
+  return [`${question}`, correctAnswer.toString()];
 };
 export default () => {
   const question = 'What number is missing in the progression?';

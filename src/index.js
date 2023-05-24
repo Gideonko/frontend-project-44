@@ -1,30 +1,25 @@
 import readLineSync from 'readline-sync';
 
-export default (question, roundProcessing) => {
+export default (description, getRound) => {
   const roundsCount = 3;
-  let isCorrect = false;
   console.log('Welcome to the Brain Games! ');
   const name = readLineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
-  console.log(question);
+  console.log(description);
 
   for (let i = 0; i < roundsCount; i += 1) {
-    const [roundQuestion, correctAnswer] = roundProcessing();
+    const [question, correctAnswer] = getRound();
 
-    console.log(`Question: ${roundQuestion}`);
+    console.log(`Question: ${question}`);
     const answer = readLineSync.question('Your answer: ');
 
     if (answer.toLowerCase() !== correctAnswer) {
-      isCorrect = false;
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-      console.log(`Let's try again, ${name}!`);
-      break;
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${name}!`);
+      return false;
     }
 
-    isCorrect = true;
     console.log('Correct!');
   }
-  if (isCorrect) {
-    console.log(`Congratulations, ${name}!`);
-  }
+  console.log(`Congratulations, ${name}!`);
+  return true;
 };

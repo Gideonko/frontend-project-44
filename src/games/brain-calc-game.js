@@ -1,7 +1,7 @@
 import getRandomInt from '../utils.js';
-import gameLoop from '../index.js';
+import play from '../index.js';
 
-const computeExpression = (firstNumber, secondNumber, operator) => {
+const calculate = (firstNumber, secondNumber, operator) => {
   switch (operator) {
     case '+':
       return firstNumber + secondNumber;
@@ -11,17 +11,17 @@ const computeExpression = (firstNumber, secondNumber, operator) => {
       return firstNumber * secondNumber;
   }
 };
-const roundProcessing = () => {
+const getRound = () => {
   const operators = ['+', '-', '*'];
   const operator = operators[Math.floor(Math.random() * operators.length)];
   const firstNumber = getRandomInt(1, 100);
   const secondNumber = getRandomInt(1, 100);
   const expression = `${firstNumber} ${operator} ${secondNumber}`;
-  const expressionResult = computeExpression(firstNumber, secondNumber, operator);
+  const expressionResult = calculate(firstNumber, secondNumber, operator);
 
   return [expression, expressionResult.toString()];
 };
 export default () => {
   const question = 'What is the result of the expression?';
-  gameLoop(question, roundProcessing);
+  play(question, getRound);
 };

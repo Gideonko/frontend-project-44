@@ -1,5 +1,5 @@
 import getRandomInt from '../utils.js';
-import gameLoop from '../index.js';
+import play from '../index.js';
 
 const computeGCD = (firstNumber, secondNumber) => {
   if (!secondNumber) {
@@ -8,7 +8,7 @@ const computeGCD = (firstNumber, secondNumber) => {
 
   return computeGCD(secondNumber, firstNumber % secondNumber);
 };
-const roundProcessing = () => {
+const getRound = () => {
   const firstNumber = getRandomInt(1, 100);
   const secondNumber = getRandomInt(1, 100);
   const correctAnswer = computeGCD(firstNumber, secondNumber);
@@ -17,5 +17,5 @@ const roundProcessing = () => {
 };
 export default () => {
   const question = 'Find the greatest common divisor of given numbers.';
-  gameLoop(question, roundProcessing);
+  play(question, getRound);
 };

@@ -1,14 +1,11 @@
 import getRandomInt from '../utils.js';
-import gameLoop from '../index.js';
+import play from '../index.js';
 
-const makeProgression = () => {
-  const progressionStep = getRandomInt(1, 10);
-  const progressionLength = getRandomInt(5, 9);
-  const progression = [getRandomInt(1, 10)];
-  const swapIndex = getRandomInt(0, progressionLength);
+const makeProgression = (step, length, progressionStart, swapIndex) => {
+  const progression = progressionStart;
 
-  for (let i = 0; i < progressionLength; i += 1) {
-    progression.push(progression[i] + progressionStep);
+  for (let i = 0; i < length; i += 1) {
+    progression.push(progression[i] + step);
   }
 
   const swappedNumber = progression[swapIndex];
@@ -16,12 +13,16 @@ const makeProgression = () => {
 
   return [progression, swappedNumber];
 };
-const roundProcessing = () => {
-  const [question, correctAnswer] = makeProgression();
+const getRound = () => {
+  const step = getRandomInt(1, 10);
+  const length = getRandomInt(5, 9);
+  const progressionStart = [getRandomInt(1, 10)];
+  const swapIndex = getRandomInt(0, length);
+  const [question, correctAnswer] = makeProgression(step, length, progressionStart, swapIndex);
 
   return [question.join(' '), correctAnswer.toString()];
 };
 export default () => {
   const question = 'What number is missing in the progression?';
-  gameLoop(question, roundProcessing);
+  play(question, getRound);
 };
